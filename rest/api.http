@@ -1,0 +1,18 @@
+#testoperatorId=3&username=qwerty11&userPassword=D8578EDF8458CE06FBC5BB76A58C5CA4 to MD5
+
+POST http://localhost:58200/api/Book HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+value1=0153A519D84482B24F7096AD6E5B9313
+
+
+
+GET http://localhost:58200/api/Book HTTP/1.1
+Content-Type: application/xml
+
+
+GET http://localhost:58200/api/Book/2 HTTP/1.1
+Content-Type: application/xml
+
+
+
