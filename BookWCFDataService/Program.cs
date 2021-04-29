@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Topshelf;
 
-namespace BookWCFBusinessService
+namespace BookWCFDataService
 {
     class Program
     {

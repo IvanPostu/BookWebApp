@@ -6,18 +6,16 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookWCFBusinessService.Service
+namespace BookWCFDataService.Service
 {
     [ServiceContract]
-    public interface  IBookService
+    public interface IBookDataService
     {
+        [OperationContract]
+        Book GetBookById(int id);
 
         [OperationContract]
-        Book buyBook(int id);
-
-        [OperationContract]
-        List<Book> getAllBooks();
-
+        List<Book> GetAllBooks();
 
     }
 }

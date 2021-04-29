@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43C74D03-25A8-441D-96E6-F6D3A43F925C}</ProjectGuid>
+    <ProjectGuid>{B9577922-F398-4BFF-8D61-1DF55F9768EE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>BookWCFService</RootNamespace>
-    <AssemblyName>BookWCFService</AssemblyName>
+    <RootNamespace>BookWCFDataService</RootNamespace>
+    <AssemblyName>BookWCFDataService</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -41,7 +41,6 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
@@ -55,58 +54,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\BookDataService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\BookService.cs" />
-    <Compile Include="Service\IBookService.cs" />
+    <Compile Include="Service\BookDataService.cs" />
+    <Compile Include="Service\IBookDataService.cs" />
     <Compile Include="WindowsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\BookDataService\BookDataService.wsdl" />
-    <None Include="Connected Services\BookDataService\item.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\BookDataService\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\BookDataService\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Models.Book.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{241BF756-88DA-4A44-A20B-4326770A87BD}</Project>
       <Name>Models</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\BookDataService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\BookDataService\item.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\BookDataService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\BookDataService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\BookDataService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
