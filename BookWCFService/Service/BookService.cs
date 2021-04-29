@@ -14,6 +14,19 @@ namespace BookWCFBusinessService.Service
 
         public Book buyBook(int id)
         {
+            //Book b = new Book() {
+            //    Author=new Author() { 
+            //        Email="qq@mail.ru",
+            //        FullName="qq",
+            //        Id=2
+            //    },
+            //    Content="adfda",
+            //    Id=2,
+            //    Title="adf"
+            //};
+
+            //return b;
+
             using (var service = new BookWCFService.BookDataService.BookDataServiceClient())
             {
                 var result = service.GetBookById(id);

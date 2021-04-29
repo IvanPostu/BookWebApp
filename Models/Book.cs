@@ -18,5 +18,8 @@ namespace Models
 
         [DataMember(Order = 3)]
         public String Content { get; set; }
+
+        [DataMember(Order = 4)]
+        public Author Author { get; set; }
     }
 }
