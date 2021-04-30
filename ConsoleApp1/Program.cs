@@ -19,7 +19,7 @@ namespace ConsoleApp1
             Int32 authorId = 1;
             Book b = new Book()
             {
-                Id = 1,
+                Id = 2,
                 Author = new Author()
                 {
                     Email = "a@mail.ru",
@@ -31,7 +31,7 @@ namespace ConsoleApp1
                 Title = "hello"
             };
 
-            d.saveBook(b);
+            d.DeleteBookById(3);
 
         }
     }

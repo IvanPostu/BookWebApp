@@ -79,12 +79,44 @@ namespace BookWCFDataService.Datasource
 
         public Boolean updateBook(Book book)
         {
+            int rowsCount = -1;
 
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                conn.Open();
 
+                SqlCommand cmd = new SqlCommand("UpdateBook", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                
+                cmd.Parameters.Add(new SqlParameter("@book_id", book.Id));
+                cmd.Parameters.Add(new SqlParameter("@title", book.Title));
+                cmd.Parameters.Add(new SqlParameter("@content", book.Content));
+                cmd.Parameters.Add(new SqlParameter("@author_id", book.Author.Id));
 
-            return false;
+                rowsCount = cmd.ExecuteNonQuery();
+            }
+
+            return rowsCount == 1;
         }
 
+        public Boolean DeleteBookById(Int32 id)
+        {
+            int rowsCount = -1;
+
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("DeleteBookById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@book_id", id));
+
+                rowsCount = cmd.ExecuteNonQuery();
+            }
+
+            return true;
+        }
 
     }
 }
