@@ -16,12 +16,11 @@
         <div><span>Book title: </span> <input type="text" id="bookTitleID" /></div>
         <div><span>Content: </span> <input type="text" id="bookContentID" /></div>
         <div><span>AuthorID: </span> <input type="text" id="bookAuthorID" /></div>
-        <div><button>Save</button></div>
+        <div><button id="saveBookIDBTN">Save</button></div>
     </div>
 
     <div style="margin-top: 20px;">
         <button id="getBooksButtomID">Get books</button>
-        <button id="addBooksButtomID">Add book</button>
     </div>
 
 
@@ -63,11 +62,6 @@
             .catch(function (err) { console.error(err) })
     }
 
-    function onAddBookClick(event) {
-        const addBookNode = document.getElementById('createUpdateSection')
-
-        generateCreateUpdateForm(addBookNode, null)
-    }
 
 
     function UpdateBookClick(id) {
@@ -77,7 +71,7 @@
             return
         }
 
-        console.log(book)
+        //console.log(book)
 
         document.getElementById('bookID').value = book.Id
         document.getElementById('bookTitleID').value = book.Title
@@ -85,7 +79,32 @@
         document.getElementById('bookAuthorID').value = book.Author.Id
     }
 
+    function saveBook() {
+
+        const book = {}
+
+        book['Id'] = document.getElementById('bookID').value
+        book['Title'] = document.getElementById('bookTitleID').value
+        book['Content'] = document.getElementById('bookContentID').value
+        book['AuthorId'] = document.getElementById('bookAuthorID').value
+
+        console.log(book)
+
+        fetch("/Book/Save" + `?Id=${book['Id']}&Title=${book['Title']}&Content=${book['Content']}&AuthorId=${book['AuthorId']}`, { method: 'GET' })
+            .then(function (res) {
+                res.json()
+                    .then(function (data) {
+
+                        console.log(data)
+
+                    })
+                    .catch(function (err) { console.error(err) })
+            })
+            .catch(function (err) { console.error(err) })
+
+    }
+
     document.getElementById("getBooksButtomID").addEventListener('click', onGetBooksClick)
-    document.getElementById("addBooksButtomID").addEventListener('click', onAddBookClick)
+    document.getElementById("saveBookIDBTN").addEventListener('click', saveBook)
 
 </script>

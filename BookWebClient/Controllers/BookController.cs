@@ -20,16 +20,27 @@ namespace BookWebClient.Controllers
             }
         }
 
-        //[HttpGet]
-        //public JsonResult GetBookInfo(int bookId)
-        //{
-        //    using (var _client = new BookService.BookServiceClient())
-        //    {
-        //        var book = _client.buyBook(bookId);
 
-        //        return Json(new { book = book }, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+
+        [HttpGet]
+        public JsonResult Save(int? Id, String Title, String Content, int AuthorId)
+        {
+            
+
+            using (var _client = new BookService.BookServiceClient())
+            {
+                if(Id == null)
+                {
+                    _client.saveBook(new Models.Book() { Author = new Models.Author() { Id = AuthorId }, Title = Title, Content = Content });
+                }
+                else
+                {
+                    _client.updateBook(new Models.Book() { Author = new Models.Author() { Id = AuthorId }, Title = Title, Content = Content, Id= Id ?? 0 });
+                }
+
+                return Json(new {  }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 
 }
