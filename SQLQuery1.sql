@@ -91,3 +91,34 @@ END
 
 EXEC GetBooks 1;
 
+
+GO
+DROP PROCEDURE IF EXISTS AddBook;
+GO
+
+GO
+CREATE PROCEDURE AddBook
+(
+	@title VARCHAR(256),
+	@content VARCHAR(256),
+	@author_id INTEGER,
+	@inserted_id INTEGER OUT
+)
+AS
+BEGIN
+	SET @inserted_id = -1;
+
+	INSERT INTO dbo.books (author_id, title, content)
+	VALUES
+	(@author_id, @title, @content);
+
+	SET @inserted_id = (SELECT SCOPE_IDENTITY());
+END
+;
+GO
+
+DECLARE @result INTEGER;
+
+EXEC AddBook  'Harry Potter', 'dfladkf;ka.......', 1, @result OUTPUT;
+
+SELECT (@result);

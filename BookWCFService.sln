@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookWCFDataService", "BookW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookWebClient", "BookWebClient\BookWebClient.csproj", "{2629B903-C7F2-4F25-BB54-21FB30016822}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{C99F6331-CE9F-4A50-8219-BE5B303D8438}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2629B903-C7F2-4F25-BB54-21FB30016822}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2629B903-C7F2-4F25-BB54-21FB30016822}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2629B903-C7F2-4F25-BB54-21FB30016822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C99F6331-CE9F-4A50-8219-BE5B303D8438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C99F6331-CE9F-4A50-8219-BE5B303D8438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C99F6331-CE9F-4A50-8219-BE5B303D8438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C99F6331-CE9F-4A50-8219-BE5B303D8438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

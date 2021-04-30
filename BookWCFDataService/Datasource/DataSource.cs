@@ -52,8 +52,39 @@ namespace BookWCFDataService.Datasource
             return result;
         }
 
+        public Boolean saveBook(Book book)
+        {
+            int insertedId = -1;
 
-    
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                conn.Open();
 
-}
+                SqlCommand cmd = new SqlCommand("AddBook", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@title", book.Title));
+                cmd.Parameters.Add(new SqlParameter("@content", book.Content));
+                cmd.Parameters.Add(new SqlParameter("@author_id", book.Author.Id));
+                cmd.Parameters.Add(new SqlParameter("@inserted_id", SqlDbType.Int));
+                cmd.Parameters["@inserted_id"].Direction = ParameterDirection.Output;
+
+                cmd.ExecuteNonQuery();
+
+                insertedId = (Int32)cmd.Parameters["@inserted_id"].Value;
+            }
+
+
+            return insertedId != -1;
+        }
+
+        public Boolean updateBook(Book book)
+        {
+
+
+
+            return false;
+        }
+
+
+    }
 }
