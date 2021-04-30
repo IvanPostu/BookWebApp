@@ -136,9 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\BookService\BookService.wsdl" />
-    <Content Include="Connected Services\BookService\BookWebClient.BookService.Book.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\BookService\item.disco" />
     <None Include="Connected Services\BookService\configuration91.svcinfo" />
     <None Include="Connected Services\BookService\configuration.svcinfo" />
@@ -165,6 +162,7 @@
     <None Include="Connected Services\BookService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Properties\DataSources\Models.Book.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -209,6 +207,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{241BF756-88DA-4A44-A20B-4326770A87BD}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\BookService\" />

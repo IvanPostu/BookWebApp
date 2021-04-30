@@ -4,44 +4,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace BookWCFBusinessService.Service
 {
     public class BookService : IBookService
     {
-
-
-        public Book buyBook(int id)
+        public void deleteBook(Book book)
         {
-            //Book b = new Book() {
-            //    Author=new Author() { 
-            //        Email="qq@mail.ru",
-            //        FullName="qq",
-            //        Id=2
-            //    },
-            //    Content="adfda",
-            //    Id=2,
-            //    Title="adf"
-            //};
-
-            //return b;
-
             using (var service = new BookWCFService.BookDataService.BookDataServiceClient())
             {
-                var result = service.GetBookById(id);
-
-                return result;
+                service.deleteBook(book);
             }
         }
 
-        public List<Book> getAllBooks()
+        public List<Book> GetAllBooks()
         {
             using (var service = new BookWCFService.BookDataService.BookDataServiceClient())
             {
-                var result = service.GetAllBooks();
+                var books = service.GetAllBooks();
+                return books.ToList();
+            }
+        }
 
-                return result.ToList();
+        public void saveBook(Book book)
+        {
+            using (var service = new BookWCFService.BookDataService.BookDataServiceClient())
+            {
+                service.saveBook(book);
+            }
+        }
+
+        public void updateBook(Book book)
+        {
+            using (var service = new BookWCFService.BookDataService.BookDataServiceClient())
+            {
+                service.updateBook(book);
             }
         }
     }

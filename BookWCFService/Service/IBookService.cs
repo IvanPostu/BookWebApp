@@ -12,12 +12,18 @@ namespace BookWCFBusinessService.Service
     public interface  IBookService
     {
 
-        [OperationContract]
-        Book buyBook(int id);
 
         [OperationContract]
-        List<Book> getAllBooks();
+        List<Book> GetAllBooks();
 
+        [OperationContract(IsOneWay = true)]
+        void saveBook(Book book);
+
+        [OperationContract(IsOneWay = true)]
+        void updateBook(Book book);
+
+        [OperationContract(IsOneWay = true)]
+        void deleteBook(Book book);
 
     }
 }

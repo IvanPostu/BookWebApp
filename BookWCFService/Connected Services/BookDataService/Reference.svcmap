@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c307419b-3c1b-473b-a94f-362b8fb8a0a8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dc973b3b-8b3c-448b-9804-5033ee00f481" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:8082/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="07431f1c-b9a4-49db-b6ea-218be58dc3ab" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="f9876d00-d770-476c-9034-f0a1a7a3d05a" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd2" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="8b70270e-1529-4a15-af23-a6a4049a6c1b" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd1" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="2a02dc3d-7263-4587-8e4b-47de72c9953f" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd0" />
-    <MetadataFile FileName="BookDataService.wsdl" MetadataType="Wsdl" ID="3caed13c-fb2a-45f5-95ee-727a8d254bbd" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="8e9cce8c-10b5-48e1-8396-2e6c85ed58c5" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="cfcc34df-bdba-47d7-87a3-03a442ee6178" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd2" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="a96ed341-d3a1-43bf-8de1-d116231fb8fc" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd1" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="e1d3fce8-4203-418d-ad81-50b53b6285e5" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd0" />
+    <MetadataFile FileName="BookDataService.wsdl" MetadataType="Wsdl" ID="0bb45fe4-e395-43b4-9a8f-179342f3d96f" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

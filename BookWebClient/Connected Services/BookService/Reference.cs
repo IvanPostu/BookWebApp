@@ -9,195 +9,35 @@
 //------------------------------------------------------------------------------
 
 namespace BookWebClient.BookService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Book", Namespace="http://schemas.datacontract.org/2004/07/Models")]
-    [System.SerializableAttribute()]
-    public partial class Book : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TitleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BookWebClient.BookService.Author AuthorField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Title {
-            get {
-                return this.TitleField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
-                    this.TitleField = value;
-                    this.RaisePropertyChanged("Title");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-        public string Content {
-            get {
-                return this.ContentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
-                    this.ContentField = value;
-                    this.RaisePropertyChanged("Content");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-        public BookWebClient.BookService.Author Author {
-            get {
-                return this.AuthorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
-                    this.AuthorField = value;
-                    this.RaisePropertyChanged("Author");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Author", Namespace="http://schemas.datacontract.org/2004/07/Models")]
-    [System.SerializableAttribute()]
-    public partial class Author : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FullNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FullName {
-            get {
-                return this.FullNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
-                    this.FullNameField = value;
-                    this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BookService.IBookService")]
     public interface IBookService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/buyBook", ReplyAction="http://tempuri.org/IBookService/buyBookResponse")]
-        BookWebClient.BookService.Book buyBook(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/GetAllBooks", ReplyAction="http://tempuri.org/IBookService/GetAllBooksResponse")]
+        Models.Book[] GetAllBooks();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/buyBook", ReplyAction="http://tempuri.org/IBookService/buyBookResponse")]
-        System.Threading.Tasks.Task<BookWebClient.BookService.Book> buyBookAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/GetAllBooks", ReplyAction="http://tempuri.org/IBookService/GetAllBooksResponse")]
+        System.Threading.Tasks.Task<Models.Book[]> GetAllBooksAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/getAllBooks", ReplyAction="http://tempuri.org/IBookService/getAllBooksResponse")]
-        BookWebClient.BookService.Book[] getAllBooks();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookService/saveBook")]
+        void saveBook(Models.Book book);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/getAllBooks", ReplyAction="http://tempuri.org/IBookService/getAllBooksResponse")]
-        System.Threading.Tasks.Task<BookWebClient.BookService.Book[]> getAllBooksAsync();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookService/saveBook")]
+        System.Threading.Tasks.Task saveBookAsync(Models.Book book);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookService/updateBook")]
+        void updateBook(Models.Book book);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookService/updateBook")]
+        System.Threading.Tasks.Task updateBookAsync(Models.Book book);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookService/deleteBook")]
+        void deleteBook(Models.Book book);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookService/deleteBook")]
+        System.Threading.Tasks.Task deleteBookAsync(Models.Book book);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -227,20 +67,36 @@ namespace BookWebClient.BookService {
                 base(binding, remoteAddress) {
         }
         
-        public BookWebClient.BookService.Book buyBook(int id) {
-            return base.Channel.buyBook(id);
+        public Models.Book[] GetAllBooks() {
+            return base.Channel.GetAllBooks();
         }
         
-        public System.Threading.Tasks.Task<BookWebClient.BookService.Book> buyBookAsync(int id) {
-            return base.Channel.buyBookAsync(id);
+        public System.Threading.Tasks.Task<Models.Book[]> GetAllBooksAsync() {
+            return base.Channel.GetAllBooksAsync();
         }
         
-        public BookWebClient.BookService.Book[] getAllBooks() {
-            return base.Channel.getAllBooks();
+        public void saveBook(Models.Book book) {
+            base.Channel.saveBook(book);
         }
         
-        public System.Threading.Tasks.Task<BookWebClient.BookService.Book[]> getAllBooksAsync() {
-            return base.Channel.getAllBooksAsync();
+        public System.Threading.Tasks.Task saveBookAsync(Models.Book book) {
+            return base.Channel.saveBookAsync(book);
+        }
+        
+        public void updateBook(Models.Book book) {
+            base.Channel.updateBook(book);
+        }
+        
+        public System.Threading.Tasks.Task updateBookAsync(Models.Book book) {
+            return base.Channel.updateBookAsync(book);
+        }
+        
+        public void deleteBook(Models.Book book) {
+            base.Channel.deleteBook(book);
+        }
+        
+        public System.Threading.Tasks.Task deleteBookAsync(Models.Book book) {
+            return base.Channel.deleteBookAsync(book);
         }
     }
 }

@@ -39,6 +39,8 @@ namespace BookWCFDataService.Datasource
                         Author a = new Author();
 
                         a.FullName = (String)rdr["fullname"];
+                        a.Id = (Int32)rdr["author_id"];
+                        a.Email = "";
                         b.Author = a;
                         b.Content = (String)rdr["content"];
                         b.Title = (String)rdr["title"];
@@ -77,7 +79,7 @@ namespace BookWCFDataService.Datasource
             return insertedId != -1;
         }
 
-        public Boolean updateBook(Book book)
+        public Boolean updateBook( Book book)
         {
             int rowsCount = -1;
 

@@ -14,22 +14,22 @@ namespace BookWebClient.Controllers
 
             using (var _client = new BookService.BookServiceClient())
             {
-                var books = _client.getAllBooks();
+                var books = _client.GetAllBooks();
 
                 return Json(new { books = books }, JsonRequestBehavior.AllowGet);
             }
         }
 
-        [HttpGet]
-        public JsonResult GetBookInfo(int bookId)
-        {
-            using (var _client = new BookService.BookServiceClient())
-            {
-                var book = _client.buyBook(bookId);
+        //[HttpGet]
+        //public JsonResult GetBookInfo(int bookId)
+        //{
+        //    using (var _client = new BookService.BookServiceClient())
+        //    {
+        //        var book = _client.buyBook(bookId);
 
-                return Json(new { book = book }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //        return Json(new { book = book }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
     }
 
 }

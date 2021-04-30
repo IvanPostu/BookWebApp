@@ -15,40 +15,39 @@
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Models" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IBookDataService_GetBookById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetBookById" />
-  </wsdl:message>
-  <wsdl:message name="IBookDataService_GetBookById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetBookByIdResponse" />
-  </wsdl:message>
   <wsdl:message name="IBookDataService_GetAllBooks_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllBooks" />
   </wsdl:message>
   <wsdl:message name="IBookDataService_GetAllBooks_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllBooksResponse" />
   </wsdl:message>
+  <wsdl:message name="IBookDataService_saveBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:saveBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookDataService_updateBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookDataService_deleteBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteBook" />
+  </wsdl:message>
   <wsdl:portType name="IBookDataService">
-    <wsdl:operation name="GetBookById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBookDataService/GetBookById" message="tns:IBookDataService_GetBookById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBookDataService/GetBookByIdResponse" message="tns:IBookDataService_GetBookById_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetAllBooks">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookDataService/GetAllBooks" message="tns:IBookDataService_GetAllBooks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBookDataService/GetAllBooksResponse" message="tns:IBookDataService_GetAllBooks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="saveBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookDataService/saveBook" message="tns:IBookDataService_saveBook_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookDataService/updateBook" message="tns:IBookDataService_updateBook_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookDataService/deleteBook" message="tns:IBookDataService_deleteBook_InputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="UserServiceWithNetTcpBinding" type="tns:IBookDataService">
     <wsp:PolicyReference URI="#UserServiceWithNetTcpBinding_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="GetBookById">
-      <soap12:operation soapAction="http://tempuri.org/IBookDataService/GetBookById" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetAllBooks">
       <soap12:operation soapAction="http://tempuri.org/IBookDataService/GetAllBooks" style="document" />
       <wsdl:input>
@@ -57,6 +56,24 @@
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveBook">
+      <soap12:operation soapAction="http://tempuri.org/IBookDataService/saveBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="updateBook">
+      <soap12:operation soapAction="http://tempuri.org/IBookDataService/updateBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="deleteBook">
+      <soap12:operation soapAction="http://tempuri.org/IBookDataService/deleteBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="BookDataService">

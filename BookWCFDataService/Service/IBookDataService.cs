@@ -11,11 +11,17 @@ namespace BookWCFDataService.Service
     [ServiceContract]
     public interface IBookDataService
     {
-        [OperationContract]
-        Book GetBookById(int id);
 
         [OperationContract]
         List<Book> GetAllBooks();
 
+        [OperationContract(IsOneWay = true)]
+        void saveBook(Book book);
+
+        [OperationContract(IsOneWay = true)]
+        void updateBook(Book book);
+
+        [OperationContract(IsOneWay = true)]
+        void deleteBook(Book book);
     }
 }

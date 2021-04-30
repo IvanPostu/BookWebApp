@@ -11,7 +11,19 @@
 
     <div id="place" style="border: 1px solid grey;"></div>
 
-    <button id="getBooksButtomID">Get books</button>
+    <div id="createUpdateSection" style="margin: 20px; border: 1px solid grey">
+        <div><span>Book ID: </span> <input type="text" id="bookID" /></div>
+        <div><span>Book title: </span> <input type="text" id="bookTitleID" /></div>
+        <div><span>Content: </span> <input type="text" id="bookContentID" /></div>
+        <div><span>AuthorID: </span> <input type="text" id="bookAuthorID" /></div>
+        <div><button>Save</button></div>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button id="getBooksButtomID">Get books</button>
+        <button id="addBooksButtomID">Add book</button>
+    </div>
+
 
 </div>
 
@@ -33,7 +45,7 @@
                             books.push(cur)
 
                             acc += `<div>
-                                        <p>BookTitle: ${cur.Title}, Content: ${cur.Content}</p>
+                                        <p style="margin-top: 20px;">BookTitle: ${cur.Title}, Content: ${cur.Content}</p>
                                         <button>Info</button>
                                         <button onclick="UpdateBookClick(${cur.Id})">Update</button>
                                         <button>Delete</button>
@@ -51,10 +63,29 @@
             .catch(function (err) { console.error(err) })
     }
 
+    function onAddBookClick(event) {
+        const addBookNode = document.getElementById('createUpdateSection')
+
+        generateCreateUpdateForm(addBookNode, null)
+    }
+
+
     function UpdateBookClick(id) {
-        console.log(id)
+        const book = books.find(a => a.Id === id)
+        if (!book) {
+            console.error("Book with id " + id + " not found")
+            return
+        }
+
+        console.log(book)
+
+        document.getElementById('bookID').value = book.Id
+        document.getElementById('bookTitleID').value = book.Title
+        document.getElementById('bookContentID').value = book.Content
+        document.getElementById('bookAuthorID').value = book.Author.Id
     }
 
     document.getElementById("getBooksButtomID").addEventListener('click', onGetBooksClick)
+    document.getElementById("addBooksButtomID").addEventListener('click', onAddBookClick)
 
 </script>
