@@ -20,7 +20,17 @@ namespace BookWebClient.Controllers
             }
         }
 
+        [HttpGet]
+        public JsonResult Delete(int Id)
+        {
 
+            using (var _client = new BookService.BookServiceClient())
+            {
+                _client.deleteBook(new Models.Book() { Id = Id });
+
+                return Json(new { }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         [HttpGet]
         public JsonResult Save(int? Id, String Title, String Content, int AuthorId)

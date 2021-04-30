@@ -47,7 +47,7 @@
                                         <p style="margin-top: 20px;">BookTitle: ${cur.Title}, Content: ${cur.Content}</p>
                                         <button>Info</button>
                                         <button onclick="UpdateBookClick(${cur.Id})">Update</button>
-                                        <button>Delete</button>
+                                        <button onclick="DeleteBookClick(${cur.Id})">Delete</button>
                                     </div>`
 
                             return acc
@@ -62,7 +62,26 @@
             .catch(function (err) { console.error(err) })
     }
 
+    function DeleteBookClick(id) {
+        const book = books.find(a => a.Id === id)
+        if (!book) {
+            console.error("Book with id " + id + " not found")
+            return
+        }
 
+        fetch("/Book/Delete" + `?Id=${book['Id']}`, { method: 'GET' })
+            .then(function (res) {
+                res.json()
+                    .then(function (data) {
+
+                        console.log(1)
+                        onGetBooksClick()
+
+                    })
+                    .catch(function (err) { console.error(err) })
+            })
+            .catch(function (err) { console.error(err) })
+    }
 
     function UpdateBookClick(id) {
         const book = books.find(a => a.Id === id)
@@ -88,14 +107,15 @@
         book['Content'] = document.getElementById('bookContentID').value
         book['AuthorId'] = document.getElementById('bookAuthorID').value
 
-        console.log(book)
+
 
         fetch("/Book/Save" + `?Id=${book['Id']}&Title=${book['Title']}&Content=${book['Content']}&AuthorId=${book['AuthorId']}`, { method: 'GET' })
             .then(function (res) {
                 res.json()
                     .then(function (data) {
 
-                        console.log(data)
+                        console.log(1)
+                        onGetBooksClick()
 
                     })
                     .catch(function (err) { console.error(err) })
@@ -103,6 +123,8 @@
             .catch(function (err) { console.error(err) })
 
     }
+
+
 
     document.getElementById("getBooksButtomID").addEventListener('click', onGetBooksClick)
     document.getElementById("saveBookIDBTN").addEventListener('click', saveBook)
