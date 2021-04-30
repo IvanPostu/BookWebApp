@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="item">
+    <h1>@ViewBag.Message</h1>
+
+    <br />
+    <br />
+    <br />
+
+    <div id="place" style="border: 1px solid grey;"></div>
+
+    <button id="getBooksButtomID">Get books</button>
+
+</div>
+
+
+<script type="text/javascript">
+
+    const books = []
+
+    function onGetBooksClick(event) {
+
+        fetch("/Book/getBooks?offset=0&limit=999")
+            .then(function (res) {
+                res.json()
+                    .then(function (data) {
+
+                        books.splice(0, books.length)
+
+                        const str = data.books.reduce((acc, cur) => {
+                            books.push(cur)
+
+                            acc += `<div>
+                                        <p>BookTitle: ${cur.Title}, Content: ${cur.Content}</p>
+                                        <button>Info</button>
+                                        <button onclick="UpdateBookClick(${cur.Id})">Update</button>
+                                        <button>Delete</button>
+                                    </div>`
+
+                            return acc
+                        }, "")
+
+                        document.getElementById("place")
+                            .innerHTML = str
+
+                    })
+                    .catch(function (err) { console.error(err) })
+            })
+            .catch(function (err) { console.error(err) })
+    }
+
+    function UpdateBookClick(id) {
+        console.log(id)
+    }
+
+    document.getElementById("getBooksButtomID").addEventListener('click', onGetBooksClick)
+
+</script>
