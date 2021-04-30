@@ -120,5 +120,91 @@ GO
 DECLARE @result INTEGER;
 
 EXEC AddBook  'Harry Potter', 'dfladkf;ka.......', 1, @result OUTPUT;
-
 SELECT (@result);
+
+
+
+
+
+
+GO
+DROP PROCEDURE IF EXISTS UpdateBook;
+GO
+
+GO
+CREATE PROCEDURE UpdateBook
+(
+	@book_id INTEGER,
+	@title VARCHAR(256),
+	@content VARCHAR(256),
+	@author_id INTEGER
+)
+AS
+BEGIN
+
+	UPDATE dbo.books
+	SET author_id = @author_id, title= @title, content = @content
+	WHERE book_id = @book_id;
+
+END
+;
+GO
+
+
+EXEC UpdateBook 1, 'Harry Potter', 'dfladkf;ka.......', 1;
+
+
+
+
+
+
+GO
+DROP PROCEDURE IF EXISTS DeleteBookById;
+GO
+
+GO
+CREATE PROCEDURE DeleteBookById
+(
+	@book_id INTEGER
+)
+AS
+BEGIN
+	DELETE FROM dbo.books WHERE book_id=@book_id;
+END
+;
+GO
+
+EXEC DeleteBookById 2;
+
+
+
+--/////////////////////////BACKUP//
+
+
+USE master;
+
+
+GO
+BACKUP DATABASE books_demo
+TO DISK = 'D:\books_demo.bak'
+   WITH FORMAT,
+      MEDIANAME = 'SQLServerBackups',
+      NAME = 'Full Backup of SQLTestDB';
+GO
+
+GO
+BACKUP LOG books_demo TO DISK = 'D:\books_demo.bak'
+GO
+
+
+
+USE books_demo;
+
+
+DECLARE @result INTEGER;
+EXEC AddBook  'Harry Potter', 'dfladkf;ka.......', 1, @result OUTPUT;
+SELECT (@result);
+
+
+
+
