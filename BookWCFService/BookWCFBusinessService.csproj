@@ -80,6 +80,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Models.Book.datasource" />
+    <None Include="Properties\DataSources\Models.Result.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

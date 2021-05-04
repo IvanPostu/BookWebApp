@@ -37,9 +37,11 @@ namespace BookWCFDataService.Service
 
         }
 
-        public void updateBook(Book book)
+        public Result updateBook(Book book)
         {
-            _dataSource.updateBook(book);
+            Result result =  _dataSource.updateBook(book);
+
+            return result;
         }
     }
 }

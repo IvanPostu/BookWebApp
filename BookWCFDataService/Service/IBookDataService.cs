@@ -18,8 +18,8 @@ namespace BookWCFDataService.Service
         [OperationContract(IsOneWay = true)]
         void saveBook(Book book);
 
-        [OperationContract(IsOneWay = true)]
-        void updateBook(Book book);
+        [OperationContract(IsOneWay = false)]
+        Result updateBook(Book book);
 
         [OperationContract(IsOneWay = true)]
         void deleteBook(Book book);

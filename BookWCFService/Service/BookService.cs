@@ -34,12 +34,16 @@ namespace BookWCFBusinessService.Service
             }
         }
 
-        public void updateBook(Book book)
+        public Result updateBook(Book book)
         {
+            Result result;
+
             using (var service = new BookWCFService.BookDataService.BookDataServiceClient())
             {
-                service.updateBook(book);
+                result = service.updateBook(book);
             }
+
+            return result;
         }
     }
 }

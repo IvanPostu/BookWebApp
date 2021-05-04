@@ -27,11 +27,11 @@ namespace BookWebClient.BookService {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookService/saveBook")]
         System.Threading.Tasks.Task saveBookAsync(Models.Book book);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookService/updateBook")]
-        void updateBook(Models.Book book);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/updateBook", ReplyAction="http://tempuri.org/IBookService/updateBookResponse")]
+        Models.Result updateBook(Models.Book book);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookService/updateBook")]
-        System.Threading.Tasks.Task updateBookAsync(Models.Book book);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/updateBook", ReplyAction="http://tempuri.org/IBookService/updateBookResponse")]
+        System.Threading.Tasks.Task<Models.Result> updateBookAsync(Models.Book book);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookService/deleteBook")]
         void deleteBook(Models.Book book);
@@ -83,11 +83,11 @@ namespace BookWebClient.BookService {
             return base.Channel.saveBookAsync(book);
         }
         
-        public void updateBook(Models.Book book) {
-            base.Channel.updateBook(book);
+        public Models.Result updateBook(Models.Book book) {
+            return base.Channel.updateBook(book);
         }
         
-        public System.Threading.Tasks.Task updateBookAsync(Models.Book book) {
+        public System.Threading.Tasks.Task<Models.Result> updateBookAsync(Models.Book book) {
             return base.Channel.updateBookAsync(book);
         }
         

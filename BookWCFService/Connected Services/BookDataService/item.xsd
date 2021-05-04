@@ -23,4 +23,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Author" nillable="true" type="tns:Author" />
+  <xs:complexType name="Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HasError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Result" nillable="true" type="tns:Result" />
 </xs:schema>

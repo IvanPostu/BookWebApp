@@ -39,13 +39,15 @@ namespace BookWebClient.Controllers
 
             using (var _client = new BookService.BookServiceClient())
             {
+                Models.Result result;
+
                 if(Id == null)
                 {
                     _client.saveBook(new Models.Book() { Author = new Models.Author() { Id = AuthorId }, Title = Title, Content = Content });
                 }
                 else
                 {
-                    _client.updateBook(new Models.Book() { Author = new Models.Author() { Id = AuthorId }, Title = Title, Content = Content, Id= Id ?? 0 });
+                    result = _client.updateBook(new Models.Book() { Author = new Models.Author() { Id = AuthorId }, Title = Title, Content = Content, Id= Id ?? 0 });
                 }
 
                 return Json(new {  }, JsonRequestBehavior.AllowGet);

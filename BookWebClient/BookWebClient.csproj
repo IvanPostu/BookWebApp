@@ -168,6 +168,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Properties\DataSources\Models.Book.datasource" />
+    <Content Include="Properties\DataSources\Models.Result.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

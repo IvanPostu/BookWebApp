@@ -18,7 +18,7 @@ namespace BookWCFDataService.Datasource
             CONNECTION_STRING = "Data Source=DESKTOP-B1TKCSB;Initial Catalog=books_demo;User Id=sa;Password=qwerty$1;Connection Timeout=15";
         }
 
-        private bool checkIfIsErrorResponse(SqlDataReader rdr)
+        private bool hasErrors(SqlDataReader rdr)
         {
             var list = new List<string> { "ErrorNumber", "ErrorSeverity", "ErrorState", "ErrorProcedure", "ErrorLine", "ErrorMessage" };
 
@@ -94,10 +94,8 @@ namespace BookWCFDataService.Datasource
             return insertedId != -1;
         }
 
-        public Boolean updateBook(Book book)
+        public Result updateBook(Book book)
         {
-            int rowsCount = -1;
-
             using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
             {
                 conn.Open();
@@ -112,11 +110,17 @@ namespace BookWCFDataService.Datasource
 
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
-                    checkIfIsErrorResponse(rdr);
+                    while (rdr.Read())
+                    {
+                        if (hasErrors(rdr))
+                        {
+                            return new Result(true, 1);
+                        }
+                    }
                 }
             }
 
-            return rowsCount == 1;
+            return new Result(false, 0);
         }
 
         public Boolean DeleteBookById(Int32 id)

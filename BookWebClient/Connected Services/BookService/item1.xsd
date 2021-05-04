@@ -27,10 +27,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="updateBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="updateBookResult" nillable="true" type="q4:Result" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="deleteBook">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="book" nillable="true" type="q4:Book" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="book" nillable="true" type="q5:Book" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
