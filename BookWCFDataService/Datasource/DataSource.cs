@@ -85,7 +85,16 @@ namespace BookWCFDataService.Datasource
                 cmd.Parameters.Add(new SqlParameter("@inserted_id", SqlDbType.Int));
                 cmd.Parameters["@inserted_id"].Direction = ParameterDirection.Output;
 
-                cmd.ExecuteNonQuery();
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        if (hasErrors(rdr))
+                        {
+                            return new Result(true, 1, (String)rdr["ErrorMessage"]);
+                        }
+                    }
+                }
 
                 insertedId = (Int32)cmd.Parameters["@inserted_id"].Value;
             }

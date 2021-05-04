@@ -64,6 +64,36 @@ VALUES
 
 GO
 
+
+--------------------
+-- FUNCTIONS    ----
+--------------------
+
+DROP FUNCTION IF EXISTS dbo.word_is_valid;  
+
+GO
+CREATE FUNCTION dbo.word_is_valid(@WORD VARCHAR(2560))
+RETURNS BIT
+WITH EXECUTE AS CALLER
+AS
+BEGIN
+	DECLARE @res BIT;
+	
+	IF @WORD = 'hello'
+		BEGIN
+			SET @res = 0;
+		END
+	ELSE
+		BEGIN
+			SET @res = 1;
+		END
+
+	RETURN(@res); 
+END;
+GO
+
+SELECT (dbo.word_is_valid('h3ello'));
+
 --------------------
 -- Procedures    ---
 --------------------
@@ -91,6 +121,7 @@ GO
 
 DROP PROCEDURE IF EXISTS GetBooks;
 
+GO
 CREATE PROCEDURE GetBooks
 (
 	@with_autors BIT
@@ -124,15 +155,31 @@ CREATE PROCEDURE AddBook
 )
 AS
 BEGIN
-	SET @inserted_id = -1;
 
-	INSERT INTO dbo.books (author_id, title, content)
-	VALUES
-	(@author_id, @title, @content);
+	BEGIN TRANSACTION;  
+		BEGIN TRY  
+			SET @inserted_id = -1;
 
-	SET @inserted_id = (SELECT SCOPE_IDENTITY());
-END
-;
+			INSERT INTO dbo.books (author_id, title, content)
+			VALUES
+			(@author_id, @title, @content);
+
+			IF NOT (dbo.word_is_valid(@title) = 1)
+				RAISERROR ('Denumirea indicata este interzis de indicat la o carte noua',11, 1)
+
+			SET @inserted_id = (SELECT SCOPE_IDENTITY());
+		END TRY  
+		BEGIN CATCH  
+			EXECUTE usp_GetErrorInfo;
+  
+			IF @@TRANCOUNT > 0  
+				ROLLBACK TRANSACTION;  
+		END CATCH;  
+
+	IF @@TRANCOUNT > 0  
+		COMMIT TRANSACTION;  
+
+END;
 GO
 
 DECLARE @result INTEGER;
@@ -166,6 +213,9 @@ BEGIN
 			SET author_id = @author_id, title= @title, content = @content
 			WHERE book_id = @book_id;
 
+			IF NOT (dbo.word_is_valid(@title) = 1)
+				RAISERROR ('Denumirea indicata este interzisa pentru modificare a cartii',11, 1)
+
 			IF @@ROWCOUNT = 0  
 				RAISERROR ('Carte cu un astfel ID nu exista, modificarea este anulata!!!',11, 1)
 				-- severity, state, ...args
@@ -178,6 +228,7 @@ BEGIN
 			IF @@TRANCOUNT > 0  
 				ROLLBACK TRANSACTION;  
 		END CATCH;  
+
 	IF @@TRANCOUNT > 0  
 		COMMIT TRANSACTION;  
 
