@@ -165,7 +165,7 @@ BEGIN
 			(@author_id, @title, @content);
 
 			IF NOT (dbo.word_is_valid(@title) = 1)
-				RAISERROR ('Denumirea indicata este interzis de indicat la o carte noua',11, 1)
+				RAISERROR ('Denumirea indicata este interzisa la o carte noua',11, 1)
 
 			SET @inserted_id = (SELECT SCOPE_IDENTITY());
 		END TRY  
@@ -295,4 +295,14 @@ SELECT (@result);
 
 
 
+
+BEGIN TRAN 
+SELECT @@trancount
+BEGIN TRAN
+SELECT @@trancount
+BEGIN TRAN
+SELECT @@trancount
+
+ROLLBACK TRAN
+SELECT @@trancount
 
