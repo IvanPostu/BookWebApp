@@ -9,11 +9,11 @@ namespace BookWCFBusinessService.Service
 {
     public class BookService : IBookService
     {
-        public void deleteBook(Book book)
+        public Result deleteBook(Book book)
         {
             using (var service = new BookWCFService.BookDataService.BookDataServiceClient())
             {
-                service.deleteBook(book);
+                return service.deleteBook(book);
             }
         }
 
@@ -26,11 +26,11 @@ namespace BookWCFBusinessService.Service
             }
         }
 
-        public void saveBook(Book book)
+        public Result saveBook(Book book)
         {
             using (var service = new BookWCFService.BookDataService.BookDataServiceClient())
             {
-                service.saveBook(book);
+                return service.saveBook(book);
             }
         }
 

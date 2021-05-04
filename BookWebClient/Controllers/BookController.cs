@@ -43,14 +43,14 @@ namespace BookWebClient.Controllers
 
                 if(Id == null)
                 {
-                    _client.saveBook(new Models.Book() { Author = new Models.Author() { Id = AuthorId }, Title = Title, Content = Content });
+                    result = _client.saveBook(new Models.Book() { Author = new Models.Author() { Id = AuthorId }, Title = Title, Content = Content });
                 }
                 else
                 {
                     result = _client.updateBook(new Models.Book() { Author = new Models.Author() { Id = AuthorId }, Title = Title, Content = Content, Id= Id ?? 0 });
                 }
 
-                return Json(new {  }, JsonRequestBehavior.AllowGet);
+                return Json(new { result = result }, JsonRequestBehavior.AllowGet);
             }
         }
     }

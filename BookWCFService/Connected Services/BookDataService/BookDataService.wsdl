@@ -24,6 +24,9 @@
   <wsdl:message name="IBookDataService_saveBook_InputMessage">
     <wsdl:part name="parameters" element="tns:saveBook" />
   </wsdl:message>
+  <wsdl:message name="IBookDataService_saveBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:saveBookResponse" />
+  </wsdl:message>
   <wsdl:message name="IBookDataService_updateBook_InputMessage">
     <wsdl:part name="parameters" element="tns:updateBook" />
   </wsdl:message>
@@ -33,6 +36,9 @@
   <wsdl:message name="IBookDataService_deleteBook_InputMessage">
     <wsdl:part name="parameters" element="tns:deleteBook" />
   </wsdl:message>
+  <wsdl:message name="IBookDataService_deleteBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteBookResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBookDataService">
     <wsdl:operation name="GetAllBooks">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookDataService/GetAllBooks" message="tns:IBookDataService_GetAllBooks_InputMessage" />
@@ -40,6 +46,7 @@
     </wsdl:operation>
     <wsdl:operation name="saveBook">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookDataService/saveBook" message="tns:IBookDataService_saveBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookDataService/saveBookResponse" message="tns:IBookDataService_saveBook_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="updateBook">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookDataService/updateBook" message="tns:IBookDataService_updateBook_InputMessage" />
@@ -47,6 +54,7 @@
     </wsdl:operation>
     <wsdl:operation name="deleteBook">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookDataService/deleteBook" message="tns:IBookDataService_deleteBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookDataService/deleteBookResponse" message="tns:IBookDataService_deleteBook_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="UserServiceWithNetTcpBinding" type="tns:IBookDataService">
@@ -66,6 +74,9 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="updateBook">
       <soap12:operation soapAction="http://tempuri.org/IBookDataService/updateBook" style="document" />
@@ -81,6 +92,9 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="BookDataService">

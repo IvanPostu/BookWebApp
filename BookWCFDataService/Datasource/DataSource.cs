@@ -69,7 +69,7 @@ namespace BookWCFDataService.Datasource
             return result;
         }
 
-        public Boolean saveBook(Book book)
+        public Result saveBook(Book book)
         {
             int insertedId = -1;
 
@@ -91,7 +91,7 @@ namespace BookWCFDataService.Datasource
             }
 
 
-            return insertedId != -1;
+            return new Result(false, 0);
         }
 
         public Result updateBook(Book book)
@@ -123,7 +123,7 @@ namespace BookWCFDataService.Datasource
             return new Result(false, 0);
         }
 
-        public Boolean DeleteBookById(Int32 id)
+        public Result DeleteBookById(Int32 id)
         {
             int rowsCount = -1;
 
@@ -139,7 +139,7 @@ namespace BookWCFDataService.Datasource
                 rowsCount = cmd.ExecuteNonQuery();
             }
 
-            return true;
+            return new Result(false, 0);
         }
 
     }

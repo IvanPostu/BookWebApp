@@ -16,14 +16,14 @@ namespace BookWCFBusinessService.Service
         [OperationContract]
         List<Book> GetAllBooks();
 
-        [OperationContract(IsOneWay = true)]
-        void saveBook(Book book);
+        [OperationContract(IsOneWay = false)]
+        Result saveBook(Book book);
 
         [OperationContract(IsOneWay = false)]
         Result updateBook(Book book);
 
-        [OperationContract(IsOneWay = true)]
-        void deleteBook(Book book);
+        [OperationContract(IsOneWay = false)]
+        Result deleteBook(Book book);
 
     }
 }

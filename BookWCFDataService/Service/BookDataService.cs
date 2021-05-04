@@ -17,9 +17,9 @@ namespace BookWCFDataService.Service
             _dataSource = new DataSource();
         }
 
-        public void deleteBook(Book book)
+        public Result deleteBook(Book book)
         {
-            _dataSource.DeleteBookById(book.Id);
+            return _dataSource.DeleteBookById(book.Id);
         }
 
         public List<Book> GetAllBooks()
@@ -31,9 +31,9 @@ namespace BookWCFDataService.Service
             return result;
         }
 
-        public void saveBook(Book book)
+        public Result saveBook(Book book)
         {
-            _dataSource.saveBook(book);
+            return _dataSource.saveBook(book);
 
         }
 

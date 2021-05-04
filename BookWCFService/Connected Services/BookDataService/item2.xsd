@@ -20,24 +20,38 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="saveBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="saveBookResult" nillable="true" type="q3:Result" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="updateBook">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="book" nillable="true" type="q3:Book" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="book" nillable="true" type="q4:Book" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="updateBookResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="updateBookResult" nillable="true" type="q4:Result" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="updateBookResult" nillable="true" type="q5:Result" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="deleteBook">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="book" nillable="true" type="q5:Book" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="book" nillable="true" type="q6:Book" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deleteBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="deleteBookResult" nillable="true" type="q7:Result" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

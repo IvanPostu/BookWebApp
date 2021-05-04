@@ -21,11 +21,11 @@ namespace BookWCFService.BookDataService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookDataService/GetAllBooks", ReplyAction="http://tempuri.org/IBookDataService/GetAllBooksResponse")]
         System.Threading.Tasks.Task<Models.Book[]> GetAllBooksAsync();
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookDataService/saveBook")]
-        void saveBook(Models.Book book);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookDataService/saveBook", ReplyAction="http://tempuri.org/IBookDataService/saveBookResponse")]
+        Models.Result saveBook(Models.Book book);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookDataService/saveBook")]
-        System.Threading.Tasks.Task saveBookAsync(Models.Book book);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookDataService/saveBook", ReplyAction="http://tempuri.org/IBookDataService/saveBookResponse")]
+        System.Threading.Tasks.Task<Models.Result> saveBookAsync(Models.Book book);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookDataService/updateBook", ReplyAction="http://tempuri.org/IBookDataService/updateBookResponse")]
         Models.Result updateBook(Models.Book book);
@@ -33,11 +33,11 @@ namespace BookWCFService.BookDataService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookDataService/updateBook", ReplyAction="http://tempuri.org/IBookDataService/updateBookResponse")]
         System.Threading.Tasks.Task<Models.Result> updateBookAsync(Models.Book book);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookDataService/deleteBook")]
-        void deleteBook(Models.Book book);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookDataService/deleteBook", ReplyAction="http://tempuri.org/IBookDataService/deleteBookResponse")]
+        Models.Result deleteBook(Models.Book book);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBookDataService/deleteBook")]
-        System.Threading.Tasks.Task deleteBookAsync(Models.Book book);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookDataService/deleteBook", ReplyAction="http://tempuri.org/IBookDataService/deleteBookResponse")]
+        System.Threading.Tasks.Task<Models.Result> deleteBookAsync(Models.Book book);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -75,11 +75,11 @@ namespace BookWCFService.BookDataService {
             return base.Channel.GetAllBooksAsync();
         }
         
-        public void saveBook(Models.Book book) {
-            base.Channel.saveBook(book);
+        public Models.Result saveBook(Models.Book book) {
+            return base.Channel.saveBook(book);
         }
         
-        public System.Threading.Tasks.Task saveBookAsync(Models.Book book) {
+        public System.Threading.Tasks.Task<Models.Result> saveBookAsync(Models.Book book) {
             return base.Channel.saveBookAsync(book);
         }
         
@@ -91,11 +91,11 @@ namespace BookWCFService.BookDataService {
             return base.Channel.updateBookAsync(book);
         }
         
-        public void deleteBook(Models.Book book) {
-            base.Channel.deleteBook(book);
+        public Models.Result deleteBook(Models.Book book) {
+            return base.Channel.deleteBook(book);
         }
         
-        public System.Threading.Tasks.Task deleteBookAsync(Models.Book book) {
+        public System.Threading.Tasks.Task<Models.Result> deleteBookAsync(Models.Book book) {
             return base.Channel.deleteBookAsync(book);
         }
     }
