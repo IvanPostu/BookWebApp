@@ -70,6 +70,24 @@ GO
 
 
 
+-- Verify that the stored procedure does not already exist.  
+IF OBJECT_ID ( 'usp_GetErrorInfo', 'P' ) IS NOT NULL   
+    DROP PROCEDURE usp_GetErrorInfo;  
+GO  
+  
+-- Create procedure to retrieve error information.  
+CREATE PROCEDURE usp_GetErrorInfo  
+AS  
+SELECT  
+    ERROR_NUMBER() AS ErrorNumber  
+    ,ERROR_SEVERITY() AS ErrorSeverity  
+    ,ERROR_STATE() AS ErrorState  
+    ,ERROR_PROCEDURE() AS ErrorProcedure  
+    ,ERROR_LINE() AS ErrorLine  
+    ,ERROR_MESSAGE() AS ErrorMessage;  
+GO  
+
+
 
 DROP PROCEDURE IF EXISTS GetBooks;
 
@@ -142,16 +160,32 @@ CREATE PROCEDURE UpdateBook
 AS
 BEGIN
 
-	UPDATE dbo.books
-	SET author_id = @author_id, title= @title, content = @content
-	WHERE book_id = @book_id;
+	BEGIN TRANSACTION;  
+		BEGIN TRY  
+ 			UPDATE dbo.books
+			SET author_id = @author_id, title= @title, content = @content
+			WHERE book_id = @book_id;
 
-END
-;
+			IF @@ROWCOUNT = 0  
+				RAISERROR ('Carte cu un astfel ID nu exista, modificarea este anulata!!!',11, 1)
+				-- severity, state, ...args
+				-- RAISERROR with severity 11-19 will cause execution to   
+				-- jump to the CATCH block.  
+		END TRY  
+		BEGIN CATCH  
+			EXECUTE usp_GetErrorInfo;
+  
+			IF @@TRANCOUNT > 0  
+				ROLLBACK TRANSACTION;  
+		END CATCH;  
+	IF @@TRANCOUNT > 0  
+		COMMIT TRANSACTION;  
+
+END;
 GO
 
 
-EXEC UpdateBook 1, 'Harry Potter', 'dfladkf;ka.......', 1;
+EXEC UpdateBook 422, 'Harry Potter', 'dfladkf;ka.......', 1;
 
 
 
@@ -204,6 +238,9 @@ USE books_demo;
 DECLARE @result INTEGER;
 EXEC AddBook  'Harry Potter', 'dfladkf;ka.......', 1, @result OUTPUT;
 SELECT (@result);
+
+
+
 
 
 

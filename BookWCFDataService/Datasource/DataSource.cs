@@ -18,6 +18,21 @@ namespace BookWCFDataService.Datasource
             CONNECTION_STRING = "Data Source=DESKTOP-B1TKCSB;Initial Catalog=books_demo;User Id=sa;Password=qwerty$1;Connection Timeout=15";
         }
 
+        private bool checkIfIsErrorResponse(SqlDataReader rdr)
+        {
+            var list = new List<string> { "ErrorNumber", "ErrorSeverity", "ErrorState", "ErrorProcedure", "ErrorLine", "ErrorMessage" };
+
+            foreach (DataRow row in rdr.GetSchemaTable().Rows)
+            {
+                bool containsRow = list.Contains(row["ColumnName"].ToString());
+                if (!containsRow)
+                    return false;
+            }
+
+            return true;
+        }
+
+
         public List<Book> SelectBooksWithAutors()
         {
             List<Book> result = new List<Book>();
@@ -79,7 +94,7 @@ namespace BookWCFDataService.Datasource
             return insertedId != -1;
         }
 
-        public Boolean updateBook( Book book)
+        public Boolean updateBook(Book book)
         {
             int rowsCount = -1;
 
@@ -89,13 +104,16 @@ namespace BookWCFDataService.Datasource
 
                 SqlCommand cmd = new SqlCommand("UpdateBook", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                
+
                 cmd.Parameters.Add(new SqlParameter("@book_id", book.Id));
                 cmd.Parameters.Add(new SqlParameter("@title", book.Title));
                 cmd.Parameters.Add(new SqlParameter("@content", book.Content));
                 cmd.Parameters.Add(new SqlParameter("@author_id", book.Author.Id));
 
-                rowsCount = cmd.ExecuteNonQuery();
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    checkIfIsErrorResponse(rdr);
+                }
             }
 
             return rowsCount == 1;
