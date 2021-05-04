@@ -91,7 +91,7 @@ namespace BookWCFDataService.Datasource
             }
 
 
-            return new Result(false, 0);
+            return new Result(false, 0, "");
         }
 
         public Result updateBook(Book book)
@@ -114,13 +114,13 @@ namespace BookWCFDataService.Datasource
                     {
                         if (hasErrors(rdr))
                         {
-                            return new Result(true, 1);
+                            return new Result(true, 1, (String)rdr["ErrorMessage"]);
                         }
                     }
                 }
             }
 
-            return new Result(false, 0);
+            return new Result(false, 0, "");
         }
 
         public Result DeleteBookById(Int32 id)
@@ -139,7 +139,7 @@ namespace BookWCFDataService.Datasource
                 rowsCount = cmd.ExecuteNonQuery();
             }
 
-            return new Result(false, 0);
+            return new Result(false, 0, "");
         }
 
     }
