@@ -40,31 +40,56 @@ GO
 
 ;
 
-EXECUTE dbo.generate_books 22100;
+EXECUTE dbo.generate_books 2100;
 
 
-SELECT * FROM dbo.books WHERE title='17FAE0B';
-SELECT * FROM dbo.books;
+SELECT * FROM dbo.books WHERE title='34DD34B';
+
+SELECT * FROM dbo.books AS b WHERE  content='CC45' 
+ORDER BY b.content
+OFFSET 0 ROWS
+FETCH NEXT 7 ROWS ONLY;
+
+SELECT * FROM dbo.books WHERE title LIKE '%CAA%';
+SELECT * FROM dbo.books b ORDER BY b.book_id DESC;
 
 GO
 
 
+
+-- INDEX
 IF EXISTS (SELECT name FROM sys.indexes  
             WHERE name = N'IX_books_title')   
     DROP INDEX IX_books_title ON books;   
 GO  
-
 CREATE NONCLUSTERED INDEX IX_books_title   
-    ON books (title);   
+    ON books (title) ;   
+GO
+
+IF EXISTS (SELECT name FROM sys.indexes  
+            WHERE name = N'IX_books_content')   
+    DROP INDEX IX_books_content ON books;   
+GO  
+CREATE NONCLUSTERED INDEX IX_books_content   
+    ON books (content) ;   
+GO
 
 
+
+CREATE UNIQUE CLUSTERED INDEX PK_books_book_id
+   ON dbo.books(book_id)
+   WITH (DROP_EXISTING=ON, SORT_IN_TEMPDB = OFF, ONLINE = ON)
+   ON [Primary]
 --INDEX
 
 
 SET STATISTICS IO OFF;
 SET STATISTICS IO ON;
 
+SET  STATISTICS TIME OFF;
+SET  STATISTICS TIME ON;
 
 
+EXECUTE sp_helpindex books;
 
 

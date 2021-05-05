@@ -130,8 +130,10 @@ AS
 BEGIN
 
 	IF @with_autors = 1
-		SELECT * FROM dbo.books AS b
-		INNER JOIN dbo.authors AS a ON a.author_id=b.author_id;
+		SELECT  * FROM dbo.books AS b
+		INNER JOIN dbo.authors AS a ON a.author_id=b.author_id ORDER BY b.book_id DESC
+		OFFSET 0 ROWS 
+		FETCH NEXT 10 ROWS ONLY
 		
 
 END
@@ -196,6 +198,13 @@ GO
 DROP PROCEDURE IF EXISTS UpdateBook;
 GO
 
+ 			UPDATE dbo.books
+			SET author_id = 2, title= 'qqqqq', content = 'qqqqq'
+			WHERE book_id = 49253;
+
+			PRINT @@ROWCOUNT;
+
+			SELECT * FROM dbo.books WHERE book_id=49253;
 GO
 CREATE PROCEDURE UpdateBook
 (
@@ -213,10 +222,12 @@ BEGIN
 			SET author_id = @author_id, title= @title, content = @content
 			WHERE book_id = @book_id;
 
+			DECLARE @isChanged INTEGER = @@ROWCOUNT;
+
 			IF NOT (dbo.word_is_valid(@title) = 1)
 				RAISERROR ('Denumirea indicata este interzisa pentru modificare a cartii',11, 1)
 
-			IF @@ROWCOUNT = 0  
+			IF @isChanged = 0  
 				RAISERROR ('Carte cu un astfel ID nu exista, modificarea este anulata!!!',11, 1)
 				-- severity, state, ...args
 				-- RAISERROR with severity 11-19 will cause execution to   
@@ -306,3 +317,48 @@ SELECT @@trancount
 ROLLBACK TRAN
 SELECT @@trancount
 
+
+
+
+
+--create table TransactionTest
+--(
+--    ID int identity primary key clustered,
+--    SomeValue varchar(20)
+--)
+
+--insert TransactionTest
+--select 'Here is a row'
+
+--begin transaction
+--    drop table TransactionTest
+--COMMIT transaction
+
+--select * from TransactionTest
+
+
+DROP TRIGGER IF EXISTS trg001;	
+GO
+CREATE TRIGGER trg001 
+ON dbo.books
+AFTER UPDATE 
+AS
+SET NOCOUNT ON
+BEGIN 
+	DECLARE @a AS INT;
+	SET @a=(SELECT COUNT(*) FROM inserted WHERE title='world');
+	IF 0<@a 
+	BEGIN
+		RAISERROR ('Titlul world este interzis de trigger', -- Message text.  
+			11, -- Severity,  
+			1, -- State,
+		
+			@a);
+		ROLLBACK;
+	END;
+END ;
+
+
+DECLARE @result INTEGER;
+EXEC AddBook  'world', 'dfladkf;ka.......', 1, @result OUTPUT;
+SELECT (@result);
