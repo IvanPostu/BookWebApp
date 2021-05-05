@@ -274,26 +274,6 @@ EXEC DeleteBookById 2;
 
 
 
---/////////////////////////BACKUP//
-
-
-USE master;
-
-
-GO
-BACKUP DATABASE books_demo
-TO DISK = 'D:\books_demo.bak'
-   WITH FORMAT,
-      MEDIANAME = 'SQLServerBackups',
-      NAME = 'Full Backup of SQLTestDB';
-GO
-
-GO
-BACKUP LOG books_demo TO DISK = 'D:\books_demo.bak'
-GO
-
-
-
 USE books_demo;
 
 
