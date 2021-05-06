@@ -1,6 +1,11 @@
 USE books_demo;
 
 GO
+DECLARE @@a INTEGER = 2
+GO
+PRINT @@a
+
+GO
 DROP PROCEDURE IF EXISTS  dbo.generate_books;
 GO
 CREATE PROCEDURE dbo.generate_books(@count INTEGER)
@@ -93,3 +98,4 @@ SET  STATISTICS TIME ON;
 EXECUTE sp_helpindex books;
 
 
+SELECT * FROM dbo.books;
